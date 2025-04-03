@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direct HTML Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #0A7273;
+    }
+    .button {
+      display: inline-block;
+      background-color: #0A7273;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Deepiga's Portfolio</h1>
+    <p>This is a direct HTML page that bypasses the React framework.</p>
+    <p>If you can see this page, the server is properly serving static HTML files.</p>
+    <a href="/" class="button">Go to Home Page</a>
+  </div>
+  
+  <script>
+    // Log that page loaded successfully
+    console.log('Direct HTML page loaded successfully');
+    
+    // Add an event listener to the document to check if it's fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM fully loaded');
+    });
+  </script>
+</body>
+</html>
