@@ -20,7 +20,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div className="bg-gray-50 text-gray-800 font-sans dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Header />
       <main>
         <Hero />
@@ -34,15 +34,19 @@ function HomePage() {
   );
 }
 
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={HomePage} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen">
-        <Switch>
-          <Route path="/" component={HomePage} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
+      <Router />
       <Toaster />
     </QueryClientProvider>
   );

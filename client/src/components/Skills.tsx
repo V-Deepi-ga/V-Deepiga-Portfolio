@@ -14,15 +14,15 @@ const methods: Skill[] = [
 
 const tools: Skill[] = [
   { name: 'Figma', percentage: 90 },
-  { name: 'Illustrator', percentage: 70 },
-  { name: 'Photoshop', percentage: 70 },
+  { name: 'Illustrator', percentage: 85 },
+  { name: 'Photoshop', percentage: 85 },
   { name: 'Canva', percentage: 95 }
 ];
 
 const technicals: Skill[] = [
   { name: 'HTML', percentage: 80 },
   { name: 'CSS', percentage: 80 },
-  { name: 'JavaScript', percentage: 20 },
+  { name: 'JavaScript', percentage: 30 },
 ];
 
 function SkillBar({ skill, delay }: { skill: Skill, delay: number }) {
