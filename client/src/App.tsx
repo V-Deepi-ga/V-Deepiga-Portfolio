@@ -35,9 +35,21 @@ function HomePage() {
 }
 
 function Router() {
+  // Get the base path from environment or default to '/V-Deepiga-Portfolio/'
+  const basePath = import.meta.env.BASE_URL || '/V-Deepiga-Portfolio/';
+  
   return (
     <Switch>
-      <Route path="/" component={HomePage} />
+      {/* Exact path for the homepage */}
+      <Route path={basePath} component={HomePage} />
+      {/* Support for index.html direct access */}
+      <Route path={`${basePath}index.html`} component={HomePage} />
+      {/* Support for direct access to other routes */}
+      <Route path={`${basePath}about`} component={HomePage} />
+      <Route path={`${basePath}skills`} component={HomePage} />
+      <Route path={`${basePath}projects`} component={HomePage} />
+      <Route path={`${basePath}contact`} component={HomePage} />
+      {/* Catch all 404 route */}
       <Route component={NotFound} />
     </Switch>
   );

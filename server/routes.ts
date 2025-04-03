@@ -35,8 +35,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Resume download route
   app.get('/api/resume', (req: Request, res: Response) => {
-    // In a real app, you would serve a real PDF file
-    res.status(200).json({ message: 'Resume download endpoint' });
+    // Return the path to the resume PDF
+    res.status(200).json({ resumeUrl: './images/Deepigauiux-resume.pdf' });
   });
 
   const httpServer = createServer(app);
