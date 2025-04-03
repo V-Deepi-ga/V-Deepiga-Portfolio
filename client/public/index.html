@@ -16,10 +16,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/DV website logo.png" />
+  <link rel="icon" type="image/png" href="./images/DV website logo.png" />
+
+  <!-- GitHub Pages SPA routing -->
+  <script type="text/javascript">
+    // This script checks if we're redirected from a 404 page with a query parameter
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
 </head>
 <body>
   <div id="root"></div>
-  <script type="module" src="../src/main.tsx"></script>
+  <!-- The main script will be injected by Vite during build -->
 </body>
 </html>
