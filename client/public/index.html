@@ -6,6 +6,15 @@
   <meta name="description" content="Deepiga's Portfolio - UI/UX Designer and Web Designer">
   <meta name="theme-color" content="#0A7273">
   <title>Deepiga | Portfolio</title>
+  <script>
+    (function(){
+      let redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
   
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
