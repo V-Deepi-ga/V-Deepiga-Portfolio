@@ -1,73 +1,54 @@
-import { useState, useEffect } from "react";
+import { useEffect } from 'react';
 import { Switch, Route } from "wouter";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import Portfolio from "@/pages/Portfolio";
-import Testimonials from "@/pages/Testimonials";
-import Contact from "@/pages/Contact";
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
+
+// Components
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Skills from '@/components/Skills';
+import Projects from '@/components/Projects';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 import NotFound from "@/pages/not-found";
 
-function App() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  // Close mobile menu when clicking on a link
+function HomePage() {
   useEffect(() => {
-    const handleHashChange = () => {
-      closeMobileMenu();
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
+    document.title = "Deepiga | Portfolio";
   }, []);
 
   return (
-    <div className="app">
-      <Header toggleMobileMenu={toggleMobileMenu} isMobileMenuOpen={isMobileMenuOpen} />
-      <Sidebar isMobileMenuOpen={isMobileMenuOpen} closeMobileMenu={closeMobileMenu} />
-      
-      <main className="lg:ml-80">
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/#about" component={About} />
-          <Route path="/#services" component={Services} />
-          <Route path="/#portfolio" component={Portfolio} />
-          <Route path="/#testimonials" component={Testimonials} />
-          <Route path="/#contact" component={Contact} />
-          <Route component={NotFound} />
-        </Switch>
-        
-        <Home />
+    <div className="bg-gray-50 text-gray-800 font-sans dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <Header />
+      <main>
+        <Hero />
         <About />
-        <Services />
-        <Portfolio />
-        <Testimonials />
-        <Contact />
-        
-        {/* Footer */}
-        <footer className="py-8 px-6 bg-white border-t border-gray-200">
-          <div className="container mx-auto text-center">
-            <p className="text-[#767676]">© 2023 John Wilson. All rights reserved.</p>
-          </div>
-        </footer>
+        <Skills />
+        <Projects />
       </main>
-      
-      <Toaster />
+      <Footer />
+      <ScrollToTop />
     </div>
+  );
+}
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={HomePage} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router />
+      <Toaster />
+    </QueryClientProvider>
   );
 }
 

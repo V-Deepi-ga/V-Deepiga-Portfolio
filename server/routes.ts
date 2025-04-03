@@ -1,36 +1,44 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form submission API
-  app.post('/api/contact', async (req, res) => {
+  // API route for contact form
+  app.post('/api/contact', async (req: Request, res: Response) => {
     try {
       const { name, email, subject, message } = req.body;
-      
-      // Validate required fields
+
+      // Validate input
       if (!name || !email || !subject || !message) {
-        return res.status(400).json({ 
-          message: 'All fields are required'
-        });
+        return res.status(400).json({ message: 'All fields are required' });
       }
-      
-      // In a real application, you would handle this data
-      // For example, send an email or store in database
-      console.log('Contact form submission:', { name, email, subject, message });
-      
-      return res.status(200).json({ 
-        message: 'Message received successfully'
-      });
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: 'Invalid email address' });
+      }
+
+      // In a real app, you would:
+      // 1. Store the message in a database
+      // 2. Send an email notification
+      // 3. Maybe set up a webhook to Slack or similar
+
+      // For now, just return success
+      res.status(200).json({ message: 'Message received successfully' });
     } catch (error) {
       console.error('Error handling contact form submission:', error);
-      return res.status(500).json({
-        message: 'An error occurred while processing your request'
-      });
+      res.status(500).json({ message: 'Internal server error' });
     }
   });
 
-  const httpServer = createServer(app);
+  // Resume download route
+  app.get('/api/resume', (req: Request, res: Response) => {
+    // In a real app, you would serve a real PDF file
+    res.status(200).json({ message: 'Resume download endpoint' });
+  });
 
+  const httpServer = createServer(app);
   return httpServer;
 }
