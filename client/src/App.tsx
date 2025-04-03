@@ -40,15 +40,29 @@ function Router() {
   
   return (
     <Switch>
-      {/* Exact path for the homepage */}
+      {/* Root path for local development */}
+      <Route path="/" component={HomePage} />
+      
+      {/* Exact path for the homepage with base path (for GitHub Pages) */}
       <Route path={basePath} component={HomePage} />
+      
       {/* Support for index.html direct access */}
       <Route path={`${basePath}index.html`} component={HomePage} />
+      <Route path="/index.html" component={HomePage} />
+      
       {/* Support for direct access to other routes */}
       <Route path={`${basePath}about`} component={HomePage} />
+      <Route path="/about" component={HomePage} />
+      
       <Route path={`${basePath}skills`} component={HomePage} />
+      <Route path="/skills" component={HomePage} />
+      
       <Route path={`${basePath}projects`} component={HomePage} />
+      <Route path="/projects" component={HomePage} />
+      
       <Route path={`${basePath}contact`} component={HomePage} />
+      <Route path="/contact" component={HomePage} />
+      
       {/* Catch all 404 route */}
       <Route component={NotFound} />
     </Switch>
