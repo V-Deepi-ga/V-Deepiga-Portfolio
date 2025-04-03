@@ -16,13 +16,13 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsMenuOpen((prevState) => !prevState);
   };
 
-  const handleNavClick = (id) => {
+  const handleNavClick = (id: string) => {
     if (id === 'resume') {
       window.open('/images/Deepigauiux-resume.pdf', '_blank');
     } else {
@@ -48,7 +48,7 @@ export default function Header() {
         <a 
           href="#home" 
           className="text-xl font-bold text-primary dark:text-teal-400 flex items-center gap-2"
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
             handleNavClick('home');
           }}
@@ -79,7 +79,7 @@ export default function Header() {
               key={href}
               href={`#${href}`}
               className="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-teal-500 font-medium"
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.preventDefault();
                 handleNavClick(href);
               }}
@@ -108,7 +108,7 @@ export default function Header() {
                 key={href}
                 href={`#${href}`}
                 className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-teal-400 font-medium py-2 border-b border-gray-200 dark:border-gray-700"
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                   e.preventDefault();
                   handleNavClick(href);
                 }}
